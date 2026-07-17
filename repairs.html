@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Repairs — PedalHub</title>
+  <meta name="description" content="Fast, transparent bike repair services on campus. Puncture repair, brake tuning, and full service — with clear pricing and no hidden fees.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ===== Navigation ===== -->
+  <nav class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <div class="nav-logo-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/>
+              <path d="M15 6a1 1 0 0 0-1-1h-1l-2 5-3-3-2 4h10L15 6Z"/>
+            </svg>
+          </div>
+          <span class="nav-logo-text">PedalHub</span>
+        </a>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html#how-it-works">How it works</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="rewards.html">Rewards</a></li>
+          <li><a href="repairs.html" class="active">Repairs</a></li>
+          <li><a href="map.html">Map</a></li>
+          <li><a href="pricing.html" class="nav-cta">Unlock a bike</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== Page Hero ===== -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-eyebrow" style="color:var(--accent);position:relative">Repairs</span>
+      <h1>Broken chain before<br>a 9am? We've got you.</h1>
+      <p>Flat fee repairs, no surprises. Book in seconds, get it fixed before your next ride.</p>
+    </div>
+  </section>
+
+  <!-- ===== Repair Services ===== -->
+  <section class="section repairs-section" id="services">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-eyebrow">Service menu</span>
+        <h2>What we fix, and how fast.</h2>
+        <p class="section-subtitle">All prices shown upfront — no diagnostic fees, no hidden add-ons.</p>
+      </div>
+
+      <div class="repair-grid">
+
+        <!-- Puncture -->
+        <div class="repair-card">
+          <div class="repair-time">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            20 min
+          </div>
+          <h3>Puncture Repair</h3>
+          <p>Patch or swap tube, wheel true-up included. We'll have you back on the road before your next class.</p>
+          <div class="repair-price">₹150</div>
+          <div class="repair-price-note">Flat rate · no extra charges</div>
+          <a href="#bookRepairForm" class="btn btn-outline" id="bookPunctureBtn">Book this repair</a>
+        </div>
+
+        <!-- Brake tuning -->
+        <div class="repair-card">
+          <div class="repair-time">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            35 min
+          </div>
+          <h3>Brake Tuning</h3>
+          <p>Pad replacement, cable tension adjustment, and a full stopping-power check — because safety first.</p>
+          <div class="repair-price">₹250</div>
+          <div class="repair-price-note">Flat rate · parts included</div>
+          <a href="#bookRepairForm" class="btn btn-outline" id="bookBrakeBtn">Book this repair</a>
+        </div>
+
+        <!-- Full service -->
+        <div class="repair-card">
+          <div class="repair-time">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            24 hrs
+          </div>
+          <h3>Full Service</h3>
+          <p>Drivetrain clean, gear tune, brake and tyre check, wash. Leave it overnight — pick up a fresh ride.</p>
+          <div class="repair-price">₹800</div>
+          <div class="repair-price-note">Flat rate · full strip-down included</div>
+          <a href="#bookRepairForm" class="btn btn-outline" id="bookFullBtn">Book this repair</a>
+        </div>
+
+      </div>
+
+      <!-- Booking CTA box -->
+      <div class="book-cta-box" id="bookRepairForm">
+        <span class="section-eyebrow" style="color:var(--accent)">Book a repair</span>
+        <h2>Flag it now, ride again soon.</h2>
+        <p>Fill in your details and we'll confirm your slot within 15 minutes.</p>
+
+        <form style="max-width:480px; margin:0 auto; text-align:left;" id="repairForm" onsubmit="handleRepairSubmit(event)">
+          <div style="display:flex; flex-direction:column; gap:0.9rem;">
+            <input type="text" id="riderName" placeholder="Your name" aria-label="Your name"
+              style="padding:0.85rem 1.15rem; border-radius:var(--radius-md); border:1px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.1); color:white; font-size:0.95rem; font-family:inherit; outline:none;">
+            <input type="text" id="hostelRoom" placeholder="Hostel & room number" aria-label="Hostel and room number"
+              style="padding:0.85rem 1.15rem; border-radius:var(--radius-md); border:1px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.1); color:white; font-size:0.95rem; font-family:inherit; outline:none;">
+            <select id="serviceType" aria-label="Select service type"
+              style="padding:0.85rem 1.15rem; border-radius:var(--radius-md); border:1px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.1); color:white; font-size:0.95rem; font-family:inherit; outline:none;">
+              <option value="" style="background:var(--primary)">Select service type</option>
+              <option value="puncture" style="background:var(--primary)">Puncture Repair — ₹150</option>
+              <option value="brake" style="background:var(--primary)">Brake Tuning — ₹250</option>
+              <option value="full" style="background:var(--primary)">Full Service — ₹800</option>
+            </select>
+            <button type="submit" class="btn btn-white btn-lg" style="justify-content:center;" id="submitRepairBtn">Confirm booking</button>
+          </div>
+        </form>
+
+        <div id="repairSuccess" style="display:none; margin-top:1.5rem; padding:1rem 1.5rem; background:rgba(82,183,136,0.2); border-radius:var(--radius-md); border:1px solid rgba(82,183,136,0.4);">
+          <p style="color:var(--white); font-weight:600; text-align:center;">✅ Booking received! We'll confirm your slot within 15 minutes.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="section faq-section" id="faq">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-eyebrow">FAQ</span>
+        <h2>Questions about repairs</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q">Where does the repair happen?</div>
+          <div class="faq-a">Our campus mechanics come to your dock or hostel block — you don't need to bring the bike anywhere. Just flag it in the app and we'll find it.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Are parts included in the price?</div>
+          <div class="faq-a">Yes. For puncture repair and brake tuning, standard parts are included in the flat rate. For full service, all consumables are included. No surprise add-ons.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">What if the repair costs more than expected?</div>
+          <div class="faq-a">We'll contact you before proceeding if additional parts are needed beyond what's covered. You'll always approve costs before we proceed — no surprises.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Can I use my repair credit from a rental plan?</div>
+          <div class="faq-a">Yes — Student plan holders get 1 free repair credit per month (puncture or brake), and Explorer/Group plan holders get roadside repair credits included. Credits apply automatically at checkout.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">What if I damage a PedalHub bike during my rental?</div>
+          <div class="faq-a">Damage is assessed at actual repair cost and capped at your plan's insurance limit. Explorer and Group riders have insurance included. Student riders can add damage cover for ₹5/day.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/>
+                <path d="M15 6a1 1 0 0 0-1-1h-1l-2 5-3-3-2 4h10L15 6Z"/>
+              </svg>
+            </div>
+            <span class="nav-logo-text">PedalHub</span>
+          </a>
+          <p>Bike rental and repair, built for campus life. Unlock a ride, earn XP, keep your streak.</p>
+          <div class="footer-newsletter">
+            <input type="email" placeholder="Email address" aria-label="Email for newsletter">
+            <button type="button">Join</button>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Ride</h4>
+          <ul>
+            <li><a href="index.html#how-it-works">How it works</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="map.html">Find a dock</a></li>
+            <li><a href="rewards.html">Rewards</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Fix</h4>
+          <ul>
+            <li><a href="repairs.html">Book a repair</a></li>
+            <li><a href="#services">Service menu</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="map.html">Campus map</a></li>
+            <li><a href="rewards.html">Rider rewards</a></li>
+            <li><a href="repairs.html">Safety</a></li>
+            <li><a href="#faq">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 PedalHub. Made for campus, by campus.</span>
+        <span>No hidden fees, ever.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks  = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+    function handleRepairSubmit(e) {
+      e.preventDefault();
+      const name    = document.getElementById('riderName').value.trim();
+      const hostel  = document.getElementById('hostelRoom').value.trim();
+      const service = document.getElementById('serviceType').value;
+      if (!name || !hostel || !service) {
+        alert('Please fill in all fields to confirm your booking.');
+        return;
+      }
+      document.getElementById('repairSuccess').style.display = 'block';
+      document.getElementById('repairForm').style.display = 'none';
+    }
+
+    // Pre-select service from anchor buttons
+    document.querySelectorAll('[id^="book"]').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const map = { bookPunctureBtn:'puncture', bookBrakeBtn:'brake', bookFullBtn:'full' };
+        const sel = document.getElementById('serviceType');
+        if (sel && map[this.id]) sel.value = map[this.id];
+      });
+    });
+  </script>
+</body>
+</html>

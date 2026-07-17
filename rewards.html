@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rider Rewards — PedalHub</title>
+  <meta name="description" content="Earn XP on every ride, climb the campus leaderboard, and unlock achievements. PedalHub rewards every rider on campus.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ===== Navigation ===== -->
+  <nav class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <div class="nav-logo-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/>
+              <path d="M15 6a1 1 0 0 0-1-1h-1l-2 5-3-3-2 4h10L15 6Z"/>
+            </svg>
+          </div>
+          <span class="nav-logo-text">PedalHub</span>
+        </a>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html#how-it-works">How it works</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="rewards.html" class="active">Rewards</a></li>
+          <li><a href="repairs.html">Repairs</a></li>
+          <li><a href="map.html">Map</a></li>
+          <li><a href="pricing.html" class="nav-cta">Unlock a bike</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== Page Hero ===== -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-eyebrow" style="color:var(--accent);position:relative">Rider Rewards</span>
+      <h1>Every ride earns<br>you something.</h1>
+      <p>Rack up XP on every trip, keep your streak alive, and climb the campus leaderboard — the bike rack's most beloved rivalry.</p>
+    </div>
+  </section>
+
+  <!-- ===== XP + Leaderboard ===== -->
+  <section class="section rewards-section">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-eyebrow">Your progress</span>
+        <h2>Where do you stand?</h2>
+        <p class="section-subtitle">Log rides, earn XP, level up. Every kilometre counts.</p>
+      </div>
+
+      <div class="rewards-layout">
+
+        <!-- XP Card -->
+        <div class="xp-card">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1.5rem;">
+            <div>
+              <h3 style="margin-bottom:0.2rem">Your Ride XP</h3>
+              <p style="font-size:0.85rem; color:var(--text-light); margin:0">Season 3 · July 2026</p>
+            </div>
+            <div class="badge badge-pale">🏆 Rider</div>
+          </div>
+
+          <!-- Progress to Level 8 -->
+          <div style="background:var(--cream); border-radius:var(--radius-lg); padding:1.5rem; margin-bottom:1.25rem;">
+            <div class="xp-card-header">
+              <span class="xp-level-label">Level 7 → Level 8</span>
+              <span class="xp-streak">🔥 5-day streak</span>
+            </div>
+            <div class="xp-bar-track">
+              <div class="xp-bar-fill"></div>
+            </div>
+            <div class="xp-bar-meta">
+              <span>1,700 XP</span>
+              <span style="color:var(--accent); font-weight:600;">68% there</span>
+              <span>2,500 XP</span>
+            </div>
+          </div>
+
+          <!-- Stats row -->
+          <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; text-align:center;">
+            <div style="background:var(--cream); border-radius:var(--radius-md); padding:1rem;">
+              <div style="font-family:var(--font-heading); font-size:1.5rem; font-weight:800; color:var(--primary)">34</div>
+              <div style="font-size:0.75rem; color:var(--text-light); font-weight:600; text-transform:uppercase; letter-spacing:0.08em">Rides</div>
+            </div>
+            <div style="background:var(--cream); border-radius:var(--radius-md); padding:1rem;">
+              <div style="font-family:var(--font-heading); font-size:1.5rem; font-weight:800; color:var(--primary)">87 km</div>
+              <div style="font-size:0.75rem; color:var(--text-light); font-weight:600; text-transform:uppercase; letter-spacing:0.08em">Distance</div>
+            </div>
+            <div style="background:var(--accent-pale); border-radius:var(--radius-md); padding:1rem;">
+              <div style="font-family:var(--font-heading); font-size:1.5rem; font-weight:800; color:var(--primary)">1,700</div>
+              <div style="font-size:0.75rem; color:var(--accent-hover); font-weight:600; text-transform:uppercase; letter-spacing:0.08em">XP Total</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Leaderboard -->
+        <div class="leaderboard">
+          <div class="leaderboard-head">🏆 Top riders this week</div>
+
+          <div class="lb-row">
+            <div class="lb-rank gold">1</div>
+            <div class="lb-avatar">AS</div>
+            <div class="lb-info">
+              <div class="lb-name">Ananya S.</div>
+              <div class="lb-hostel">Hostel C</div>
+            </div>
+            <div class="lb-xp">2,840 XP</div>
+          </div>
+
+          <div class="lb-row">
+            <div class="lb-rank silver">2</div>
+            <div class="lb-avatar">RK</div>
+            <div class="lb-info">
+              <div class="lb-name">Rehan K.</div>
+              <div class="lb-hostel">Hostel A</div>
+            </div>
+            <div class="lb-xp">2,615 XP</div>
+          </div>
+
+          <div class="lb-row">
+            <div class="lb-rank bronze">3</div>
+            <div class="lb-avatar">PM</div>
+            <div class="lb-info">
+              <div class="lb-name">Priya M.</div>
+              <div class="lb-hostel">Hostel B</div>
+            </div>
+            <div class="lb-xp">2,390 XP</div>
+          </div>
+
+          <div class="lb-row">
+            <div class="lb-rank">4</div>
+            <div class="lb-avatar">DT</div>
+            <div class="lb-info">
+              <div class="lb-name">Dev T.</div>
+              <div class="lb-hostel">Hostel A</div>
+            </div>
+            <div class="lb-xp">2,110 XP</div>
+          </div>
+
+          <div class="lb-row">
+            <div class="lb-rank">5</div>
+            <div class="lb-avatar">SK</div>
+            <div class="lb-info">
+              <div class="lb-name">Shruti K.</div>
+              <div class="lb-hostel">Hostel C</div>
+            </div>
+            <div class="lb-xp">1,980 XP</div>
+          </div>
+
+          <div style="padding:1.1rem 1.75rem; background:var(--cream); border-top:1px solid var(--cream-dark);">
+            <div style="display:flex; align-items:center; gap:0.7rem;">
+              <div class="lb-rank" style="color:var(--accent); font-size:0.85rem;">You</div>
+              <div class="lb-avatar" style="background:var(--primary); color:var(--white);">Me</div>
+              <div class="lb-info">
+                <div class="lb-name">Your name</div>
+                <div class="lb-hostel">Hostel B</div>
+              </div>
+              <div class="lb-xp" style="color:var(--accent);">1,700 XP</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Achievements ===== -->
+  <section class="section achievements-section">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-eyebrow">Achievements</span>
+        <h2>Unlock badges on every ride</h2>
+        <p class="section-subtitle">Milestones that celebrate how you ride — from your first scan to your hundredth kilometre.</p>
+      </div>
+      <div class="ach-grid">
+        <div class="ach-card">
+          <div class="ach-icon">🌅</div>
+          <div class="ach-name">Early Bird</div>
+          <div class="ach-desc">First ride before 8 AM</div>
+        </div>
+        <div class="ach-card">
+          <div class="ach-icon">🌿</div>
+          <div class="ach-name">Eco Warrior</div>
+          <div class="ach-desc">20 rides completed</div>
+        </div>
+        <div class="ach-card">
+          <div class="ach-icon">🔧</div>
+          <div class="ach-name">Repair Rookie</div>
+          <div class="ach-desc">First repair booked</div>
+        </div>
+        <div class="ach-card">
+          <div class="ach-icon">🗺️</div>
+          <div class="ach-name">Campus Explorer</div>
+          <div class="ach-desc">Docked at every cluster</div>
+        </div>
+        <div class="ach-card">
+          <div class="ach-icon">💯</div>
+          <div class="ach-name">Century Rider</div>
+          <div class="ach-desc">100 km total distance</div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div style="text-align:center; margin-top:3.5rem;">
+        <p style="max-width:460px; margin:0 auto 1.75rem;">Ready to start earning? Unlock your first bike and your first XP in under 30 seconds.</p>
+        <a href="pricing.html" class="btn btn-primary btn-lg" id="startRidingBtn">Start riding →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/>
+                <path d="M15 6a1 1 0 0 0-1-1h-1l-2 5-3-3-2 4h10L15 6Z"/>
+              </svg>
+            </div>
+            <span class="nav-logo-text">PedalHub</span>
+          </a>
+          <p>Bike rental and repair, built for campus life. Unlock a ride, earn XP, keep your streak.</p>
+          <div class="footer-newsletter">
+            <input type="email" placeholder="Email address" aria-label="Email for newsletter">
+            <button type="button">Join</button>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Ride</h4>
+          <ul>
+            <li><a href="index.html#how-it-works">How it works</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="map.html">Find a dock</a></li>
+            <li><a href="rewards.html">Rewards</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Fix</h4>
+          <ul>
+            <li><a href="repairs.html">Book a repair</a></li>
+            <li><a href="repairs.html#services">Service menu</a></li>
+            <li><a href="repairs.html#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="map.html">Campus map</a></li>
+            <li><a href="rewards.html">Rider rewards</a></li>
+            <li><a href="repairs.html">Safety</a></li>
+            <li><a href="repairs.html#faq">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 PedalHub. Made for campus, by campus.</span>
+        <span>No hidden fees, ever.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks  = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+  </script>
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing — PedalHub</title>
+  <meta name="description" content="Transparent bike rental pricing with hourly and daily tiers. No hidden fees, ever. Student, Explorer, and Group plans available on campus.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ===== Navigation ===== -->
+  <nav class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <div class="nav-logo-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/>
+              <path d="M15 6a1 1 0 0 0-1-1h-1l-2 5-3-3-2 4h10L15 6Z"/>
+            </svg>
+          </div>
+          <span class="nav-logo-text">PedalHub</span>
+        </a>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html#how-it-works">How it works</a></li>
+          <li><a href="pricing.html" class="active">Pricing</a></li>
+          <li><a href="rewards.html">Rewards</a></li>
+          <li><a href="repairs.html">Repairs</a></li>
+          <li><a href="map.html">Map</a></li>
+          <li><a href="pricing.html" class="nav-cta">Unlock a bike</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== Page Hero ===== -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-eyebrow" style="color:var(--accent);position:relative">Pricing</span>
+      <h1>Straightforward,<br>right down to the fine print.</h1>
+      <p>Every rupee visible before you ride. Switch between hourly and daily below.</p>
+    </div>
+  </section>
+
+  <!-- ===== Pricing Section ===== -->
+  <section class="section pricing-section">
+    <div class="container">
+
+      <!-- Toggle -->
+      <div class="toggle-wrapper">
+        <div class="toggle-group" role="group" aria-label="Pricing period">
+          <button class="toggle-btn active" id="btnHourly" aria-pressed="true">Hourly</button>
+          <button class="toggle-btn" id="btnDaily" aria-pressed="false">Daily</button>
+        </div>
+      </div>
+
+      <!-- Pricing Cards -->
+      <div class="pricing-grid" id="pricingGrid">
+
+        <!-- Student -->
+        <div class="pricing-card" id="cardStudent">
+          <h3>Student</h3>
+          <p class="card-desc">For the daily commute</p>
+          <div class="price-amount" id="priceStudent">₹15</div>
+          <p class="price-label" id="labelStudent">per hour</p>
+          <hr class="price-divider">
+          <ul class="feat-list">
+            <li class="feat-item">Helmet included</li>
+            <li class="feat-item">Basic lock</li>
+            <li class="feat-item">Standard bike model</li>
+            <li class="feat-item">1 free repair credit / month</li>
+            <li class="feat-item">Student ID fast-unlock</li>
+          </ul>
+          <p class="no-fee-note">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            No hidden fees — what you see is what you pay
+          </p>
+          <a href="#" class="btn btn-outline btn-block" id="chooseStudentBtn">Choose Student</a>
+        </div>
+
+        <!-- Explorer (featured) -->
+        <div class="pricing-card featured" id="cardExplorer">
+          <div class="popular-tag">⭐ Most popular</div>
+          <h3>Explorer</h3>
+          <p class="card-desc">Most flexibility, best value</p>
+          <div class="price-amount" id="priceExplorer">₹22</div>
+          <p class="price-label" id="labelExplorer">per hour</p>
+          <hr class="price-divider">
+          <ul class="feat-list">
+            <li class="feat-item">Helmet + phone mount</li>
+            <li class="feat-item">Smart lock</li>
+            <li class="feat-item">Hybrid or gear bike</li>
+            <li class="feat-item">Roadside repair credit</li>
+            <li class="feat-item">Ride insurance included</li>
+          </ul>
+          <p class="no-fee-note light">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            No hidden fees — what you see is what you pay
+          </p>
+          <a href="#" class="btn btn-primary btn-block" id="chooseExplorerBtn">Choose Explorer</a>
+        </div>
+
+        <!-- Group -->
+        <div class="pricing-card" id="cardGroup">
+          <h3>Group</h3>
+          <p class="card-desc">For squads and study groups</p>
+          <div class="price-amount" id="priceGroup">₹60</div>
+          <p class="price-label" id="labelGroup">per hour · up to 4 bikes</p>
+          <hr class="price-divider">
+          <ul class="feat-list">
+            <li class="feat-item">Up to 4 bikes</li>
+            <li class="feat-item">Helmets for all riders</li>
+            <li class="feat-item">Priority docking</li>
+            <li class="feat-item">2 repair credits / month</li>
+            <li class="feat-item">Ride insurance included</li>
+          </ul>
+          <p class="no-fee-note">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            No hidden fees — what you see is what you pay
+          </p>
+          <a href="#" class="btn btn-outline btn-block" id="chooseGroupBtn">Choose Group</a>
+        </div>
+
+      </div>
+
+      <!-- Fee Transparency Box -->
+      <div class="transparency-box" id="transparencyBox">
+        <span class="section-eyebrow">Full transparency</span>
+        <h2>Every charge, listed upfront.</h2>
+        <p>We believe you deserve to know exactly what you'll pay — before, during, and after your ride.</p>
+        <div class="transp-grid">
+          <div class="transp-item">
+            <div class="transp-label">Security Deposit</div>
+            <div class="transp-value" style="color:var(--accent)">₹0</div>
+            <div class="transp-desc">Fully waived for valid student ID holders</div>
+          </div>
+          <div class="transp-item">
+            <div class="transp-label">Late Return Fee</div>
+            <div class="transp-value">₹5 / hour</div>
+            <div class="transp-desc">Capped at one full day's rate — no runaway charges</div>
+          </div>
+          <div class="transp-item">
+            <div class="transp-label">Damage Policy</div>
+            <div class="transp-value" style="font-size:1.1rem">Repair cost</div>
+            <div class="transp-desc">Assessed at actual repair cost, capped at plan's insurance limit</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/>
+                <path d="M15 6a1 1 0 0 0-1-1h-1l-2 5-3-3-2 4h10L15 6Z"/>
+              </svg>
+            </div>
+            <span class="nav-logo-text">PedalHub</span>
+          </a>
+          <p>Bike rental and repair, built for campus life. Unlock a ride, earn XP, keep your streak.</p>
+          <div class="footer-newsletter">
+            <input type="email" placeholder="Email address" aria-label="Email for newsletter">
+            <button type="button">Join</button>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Ride</h4>
+          <ul>
+            <li><a href="index.html#how-it-works">How it works</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="map.html">Find a dock</a></li>
+            <li><a href="rewards.html">Rewards</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Fix</h4>
+          <ul>
+            <li><a href="repairs.html">Book a repair</a></li>
+            <li><a href="repairs.html#services">Service menu</a></li>
+            <li><a href="repairs.html#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="map.html">Campus map</a></li>
+            <li><a href="rewards.html">Rider rewards</a></li>
+            <li><a href="repairs.html">Safety</a></li>
+            <li><a href="repairs.html#faq">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 PedalHub. Made for campus, by campus.</span>
+        <span>No hidden fees, ever.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav
+    const hamburger = document.getElementById('hamburger');
+    const navLinks  = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+    // Pricing toggle
+    const btnHourly = document.getElementById('btnHourly');
+    const btnDaily  = document.getElementById('btnDaily');
+
+    const hourlyData = {
+      student:  { price: '₹15', label: 'per hour' },
+      explorer: { price: '₹22', label: 'per hour' },
+      group:    { price: '₹60', label: 'per hour · up to 4 bikes' }
+    };
+    const dailyData = {
+      student:  { price: '₹80',  label: 'per day' },
+      explorer: { price: '₹150', label: 'per day' },
+      group:    { price: '₹350', label: 'per day · up to 4 bikes' }
+    };
+
+    function applyPricing(data) {
+      document.getElementById('priceStudent').textContent  = data.student.price;
+      document.getElementById('labelStudent').textContent  = data.student.label;
+      document.getElementById('priceExplorer').textContent = data.explorer.price;
+      document.getElementById('labelExplorer').textContent = data.explorer.label;
+      document.getElementById('priceGroup').textContent    = data.group.price;
+      document.getElementById('labelGroup').textContent    = data.group.label;
+    }
+
+    btnHourly.addEventListener('click', () => {
+      btnHourly.classList.add('active'); btnHourly.setAttribute('aria-pressed','true');
+      btnDaily.classList.remove('active'); btnDaily.setAttribute('aria-pressed','false');
+      applyPricing(hourlyData);
+    });
+    btnDaily.addEventListener('click', () => {
+      btnDaily.classList.add('active'); btnDaily.setAttribute('aria-pressed','true');
+      btnHourly.classList.remove('active'); btnHourly.setAttribute('aria-pressed','false');
+      applyPricing(dailyData);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PedalHub — Campus Bike Rental & Repair</title>
+  <meta name="description" content="PedalHub is your campus bike rental and repair service. Unlock a bike outside your hostel, ride to class, and book repairs — no hidden fees, ever.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ===== Navigation ===== -->
+  <nav class="nav" id="mainNav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <div class="nav-logo-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/>
+              <path d="M15 6a1 1 0 0 0-1-1h-1l-2 5-3-3-2 4h10L15 6Z"/>
+            </svg>
+          </div>
+          <span class="nav-logo-text">PedalHub</span>
+        </a>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#how-it-works" class="active">How it works</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="rewards.html">Rewards</a></li>
+          <li><a href="repairs.html">Repairs</a></li>
+          <li><a href="map.html">Map</a></li>
+          <li><a href="pricing.html" class="nav-cta">Unlock a bike</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="badge badge-pale">🚲 For every rider on campus</div>
+          <h1 class="hero-title">Ride now,<br>fix later.</h1>
+          <p class="hero-desc">Campus wheels on demand — unlock a bike outside your hostel, ride to class, and book a repair without ever leaving your dorm.</p>
+          <div class="hero-ctas">
+            <a href="pricing.html" class="btn btn-primary btn-lg" id="rentBikeBtn">Rent a bike</a>
+            <a href="repairs.html" class="btn btn-outline btn-lg" id="bookRepairBtn">Book a repair</a>
+          </div>
+          <div class="hero-trust">
+            <svg class="shield" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            No hidden fees, ever
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="bike-wrapper">
+            <div class="bike-glow"></div>
+            <!-- Detailed Bicycle SVG -->
+            <svg class="bike-svg" viewBox="0 0 420 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="PedalHub bicycle illustration" role="img">
+              <!-- Shadow -->
+              <ellipse cx="210" cy="285" rx="150" ry="12" fill="rgba(27,67,50,0.08)"/>
+
+              <!-- REAR WHEEL -->
+              <circle cx="105" cy="200" r="78" stroke="#1B4332" stroke-width="9"/>
+              <circle cx="105" cy="200" r="62" stroke="#52B788" stroke-width="3" stroke-dasharray="9 6"/>
+              <circle cx="105" cy="200" r="11" fill="#1B4332" stroke="white" stroke-width="2"/>
+              <!-- Rear spokes (8 spokes) -->
+              <line x1="105" y1="122" x2="105" y2="189" stroke="#1B4332" stroke-width="2.5"/>
+              <line x1="105" y1="211" x2="105" y2="278" stroke="#1B4332" stroke-width="2.5"/>
+              <line x1="27"  y1="200" x2="94"  y2="200" stroke="#1B4332" stroke-width="2.5"/>
+              <line x1="116" y1="200" x2="183" y2="200" stroke="#1B4332" stroke-width="2.5"/>
+              <line x1="50"  y1="145" x2="97"  y2="192" stroke="#1B4332" stroke-width="2.5"/>
+              <line x1="113" y1="208" x2="160" y2="255" stroke="#1B4332" stroke-width="2.5"/>
+              <line x1="160" y1="145" x2="113" y2="192" stroke="#1B4332" stroke-width="2.5"/>
+              <line x1="97"  y1="208" x2="50"  y2="255" stroke="#1B4332" stroke-width="2.5"/>
+
+              <!-- FRONT WHEEL -->
+              <circle cx="315" cy="200" r="78" stroke="#1B4332" stroke-width="9"/>
+              <circle cx="315" cy="200" r="62" stroke="#52B788" stroke-width="3" stroke-dasharray="9 6"/>
+              <circle cx="315" cy="200" r="11" fill="#1B4332" stroke="white" stroke-width="2"/>
+              <!-- Front spokes (8 spokes) -->
+              <line x1="315" y1="122" x2="315" y2="189" stroke="#1B4332" stroke-width="2.5"/>
+              <line x1="315" y1="211" x2="315" y2="278" stroke="#1B4332" stroke-width="2.5"/>
+              <line x1="237" y1="200" x2="304" y2="200" stroke="#1B4332" stroke-width="2.5"/>
+              <line x1="326" y1="200" x2="393" y2="200" stroke="#1B4332" stroke-width="2.5"/>
+              <line x1="260" y1="145" x2="307" y2="192" stroke="#1B4332" stroke-width="2.5"/>
+              <line x1="323" y1="208" x2="370" y2="255" stroke="#1B4332" stroke-width="2.5"/>
+              <line x1="370" y1="145" x2="323" y2="192" stroke="#1B4332" stroke-width="2.5"/>
+              <line x1="307" y1="208" x2="260" y2="255" stroke="#1B4332" stroke-width="2.5"/>
+
+              <!-- FRAME -->
+              <!-- Chainstay: rear hub → bottom bracket -->
+              <line x1="105" y1="200" x2="210" y2="148" stroke="#1B4332" stroke-width="10" stroke-linecap="round"/>
+              <!-- Seatstay: rear hub → seat tube top -->
+              <line x1="105" y1="200" x2="192" y2="78" stroke="#2D6A4F" stroke-width="7" stroke-linecap="round"/>
+              <!-- Seat tube: bottom bracket → seat tube top -->
+              <line x1="210" y1="148" x2="192" y2="78" stroke="#1B4332" stroke-width="10" stroke-linecap="round"/>
+              <!-- Down tube: head tube → bottom bracket -->
+              <line x1="283" y1="95" x2="210" y2="148" stroke="#1B4332" stroke-width="10" stroke-linecap="round"/>
+              <!-- Top tube: head tube → seat tube top -->
+              <line x1="283" y1="95" x2="192" y2="78" stroke="#1B4332" stroke-width="10" stroke-linecap="round"/>
+              <!-- Fork: head tube → front hub -->
+              <line x1="283" y1="95" x2="315" y2="200" stroke="#1B4332" stroke-width="9" stroke-linecap="round"/>
+
+              <!-- BOTTOM BRACKET (crank) -->
+              <circle cx="210" cy="148" r="15" fill="#52B788" stroke="#1B4332" stroke-width="3"/>
+              <!-- Pedal cranks -->
+              <line x1="210" y1="148" x2="232" y2="170" stroke="#1B4332" stroke-width="6" stroke-linecap="round"/>
+              <line x1="210" y1="148" x2="188" y2="126" stroke="#1B4332" stroke-width="6" stroke-linecap="round"/>
+              <!-- Pedals -->
+              <rect x="229" y="168" width="14" height="5" rx="2" fill="#0D1B0F" transform="rotate(45,236,170)"/>
+              <rect x="181" y="120" width="14" height="5" rx="2" fill="#0D1B0F" transform="rotate(45,188,124)"/>
+
+              <!-- SEAT POST + SADDLE -->
+              <line x1="192" y1="78" x2="192" y2="48" stroke="#1B4332" stroke-width="8" stroke-linecap="round"/>
+              <!-- Saddle -->
+              <path d="M166 44 Q180 36 192 38 Q204 36 218 44 Q210 52 192 50 Q174 52 166 44Z" fill="#1B4332"/>
+
+              <!-- HEAD TUBE + HANDLEBAR -->
+              <circle cx="283" cy="95" r="9" fill="#52B788" stroke="#1B4332" stroke-width="3"/>
+              <!-- Stem -->
+              <line x1="283" y1="95" x2="280" y2="60" stroke="#1B4332" stroke-width="8" stroke-linecap="round"/>
+              <!-- Handlebar drop -->
+              <path d="M258 56 Q270 52 280 56 Q290 60 298 58" stroke="#1B4332" stroke-width="8" stroke-linecap="round" fill="none"/>
+              <!-- Bar ends -->
+              <circle cx="258" cy="56" r="5" fill="#52B788" stroke="#1B4332" stroke-width="2"/>
+              <circle cx="298" cy="58" r="5" fill="#52B788" stroke="#1B4332" stroke-width="2"/>
+
+              <!-- CHAIN (simplified) -->
+              <path d="M195 148 Q155 175 105 200" stroke="#1B4332" stroke-width="2.5" fill="none" stroke-dasharray="5 4" opacity="0.6"/>
+              <path d="M225 148 Q260 168 315 200" stroke="#1B4332" stroke-width="2.5" fill="none" stroke-dasharray="5 4" opacity="0.6"/>
+
+              <!-- Decorative dots -->
+              <circle cx="50"  cy="120" r="4" fill="rgba(82,183,136,0.3)"/>
+              <circle cx="370" cy="120" r="4" fill="rgba(82,183,136,0.3)"/>
+              <circle cx="30"  cy="240" r="3" fill="rgba(82,183,136,0.2)"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== How It Works ===== -->
+  <section class="section how-it-works" id="how-it-works">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-eyebrow">Simple process</span>
+        <h2>Getting started</h2>
+        <p class="section-subtitle">Three steps between you and your next class.</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">01</div>
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+          </div>
+          <h3>Scan the QR</h3>
+          <p>Find any PedalHub dock on campus and scan to unlock in under three seconds.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">02</div>
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          </div>
+          <h3>Ride wherever</h3>
+          <p>Library, mess hall, the 8am lecture you're late for — the bike's yours till you dock it.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">03</div>
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          </div>
+          <h3>Return or repair</h3>
+          <p>Drop it at any dock, or flag a puncture and we'll fix it before your next ride.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Pricing Teaser ===== -->
+  <section class="section pricing-teaser">
+    <div class="container">
+      <span class="section-eyebrow" style="color:var(--accent)">Pricing</span>
+      <h2>No hidden fees, ever.</h2>
+      <p class="sub">From ₹15/hour for students. See every rupee before you ride — no surprises at checkout.</p>
+      <a href="pricing.html" class="btn btn-white btn-lg" id="viewPlansBtn">View all plans →</a>
+    </div>
+  </section>
+
+  <!-- ===== Testimonials ===== -->
+  <section class="section testimonials">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-eyebrow">Reviews</span>
+        <h2>From the bike racks</h2>
+        <p class="section-subtitle">What campus is saying.</p>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Scanned and unlocked in literally 3 seconds. Rode to the library and back. ₹15 well spent — no drama, no hidden charges."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">AS</div>
+            <div>
+              <div class="testi-name">Ananya S.</div>
+              <div class="testi-meta">Hostel C · MBA Year 1</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Got a puncture mid-ride, flagged it in the app, and it was fixed by evening. The repair credit on the Explorer plan paid for itself week one."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">RK</div>
+            <div>
+              <div class="testi-name">Rehan K.</div>
+              <div class="testi-meta">Hostel A · MBA Year 2</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★☆</div>
+          <p class="testi-text">"The Group plan is a lifesaver for study sessions across campus. Four bikes at ₹60/hr total is cheaper than a shared auto and way more fun."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">PM</div>
+            <div>
+              <div class="testi-name">Priya M.</div>
+              <div class="testi-meta">Hostel B · MBA Year 1</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/>
+                <path d="M15 6a1 1 0 0 0-1-1h-1l-2 5-3-3-2 4h10L15 6Z"/>
+              </svg>
+            </div>
+            <span class="nav-logo-text">PedalHub</span>
+          </a>
+          <p>Bike rental and repair, built for campus life. Unlock a ride, earn XP, keep your streak.</p>
+          <div class="footer-newsletter">
+            <input type="email" placeholder="Email address" id="newsletterEmail" aria-label="Email for newsletter">
+            <button type="button" id="newsletterJoin">Join</button>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Ride</h4>
+          <ul>
+            <li><a href="#how-it-works">How it works</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="map.html">Find a dock</a></li>
+            <li><a href="rewards.html">Rewards</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Fix</h4>
+          <ul>
+            <li><a href="repairs.html">Book a repair</a></li>
+            <li><a href="repairs.html#services">Service menu</a></li>
+            <li><a href="repairs.html#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="map.html">Campus map</a></li>
+            <li><a href="rewards.html">Rider rewards</a></li>
+            <li><a href="repairs.html">Safety</a></li>
+            <li><a href="repairs.html#faq">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 PedalHub. Made for campus, by campus.</span>
+        <span>No hidden fees, ever.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks  = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+
+    // Close nav on link click (mobile)
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+  </script>
+</body>
+</html>
