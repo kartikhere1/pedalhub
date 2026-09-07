@@ -35,7 +35,7 @@ if (section) {
 
                 <div class="ph-form-card">
 
-                    <form id="ph-form">
+                    <form id="ph-form" novalidate>
 
 
                         <div class="ph-field">
@@ -88,56 +88,66 @@ if (section) {
                                 Can you still ride the bike?
                             </label>
 
-                            <select
-                                class="ph-select"
-                                id="canRide"
-                            >
+                            <div class="ph-radio-group" role="radiogroup" aria-label="Can you still ride the bike?">
 
-                                <option value="">
-                                    Choose...
-                                </option>
+                                <label class="ph-radio-option">
+                                    <input
+                                        type="radio"
+                                        name="canRide"
+                                        value="yes"
+                                        class="ph-radio-input"
+                                    >
+                                    <span class="ph-radio-text">Yes</span>
+                                </label>
 
-                                <option value="yes">
-                                    Yes
-                                </option>
+                                <label class="ph-radio-option">
+                                    <input
+                                        type="radio"
+                                        name="canRide"
+                                        value="no"
+                                        class="ph-radio-input"
+                                    >
+                                    <span class="ph-radio-text">No</span>
+                                </label>
 
-                                <option value="no">
-                                    No
-                                </option>
-
-                            </select>
+                            </div>
 
                         </div>
 
 
                         <div class="ph-field">
 
-                            <label class="ph-label">
-                                How serious is the problem?
-                            </label>
+                            <div class="ph-range-header">
+                                <label class="ph-label" for="seriousnessSlider">
+                                    How serious is the problem?
+                                </label>
+                                <span class="ph-range-badge severity-moderate" id="seriousnessBadge">
+                                    Moderate
+                                </span>
+                            </div>
 
-                            <select
-                                class="ph-select"
-                                id="seriousness"
+                            <input
+                                type="range"
+                                min="1"
+                                max="3"
+                                step="1"
+                                value="2"
+                                id="seriousnessSlider"
+                                class="ph-range-slider"
+                                aria-label="How serious is the problem"
                             >
 
-                                <option value="">
-                                    Choose...
-                                </option>
+                            <input
+                                type="hidden"
+                                id="seriousness"
+                                value="moderate"
+                            >
 
-                                <option value="small">
-                                    Small
-                                </option>
-
-                                <option value="moderate">
-                                    Moderate
-                                </option>
-
-                                <option value="serious">
-                                    Serious
-                                </option>
-
-                            </select>
+                            <div class="ph-range-labels">
+                                <span class="ph-range-tick" data-val="1">🟢 Small</span>
+                                <span class="ph-range-tick active" data-val="2">🟡 Moderate</span>
+                                <span class="ph-range-tick" data-val="3">🔴 Serious</span>
+                            </div>
 
                         </div>
 
@@ -247,6 +257,64 @@ if (section) {
     if (form) {
 
         // ====================================================
+        // STEP 4A: SETUP RANGE SLIDER & RADIO BUTTONS
+        // ====================================================
+
+        const slider = document.getElementById("seriousnessSlider");
+        const seriousnessHidden = document.getElementById("seriousness");
+        const badge = document.getElementById("seriousnessBadge");
+        const ticks = document.querySelectorAll(".ph-range-tick");
+
+        const severityMap = {
+            "1": { value: "small", label: "Small", class: "severity-small" },
+            "2": { value: "moderate", label: "Moderate", class: "severity-moderate" },
+            "3": { value: "serious", label: "Serious", class: "severity-serious" }
+        };
+
+        function updateSeverity(val) {
+            const config = severityMap[val] || severityMap["2"];
+            if (seriousnessHidden) {
+                seriousnessHidden.value = config.value;
+            }
+            if (badge) {
+                badge.textContent = config.label;
+                badge.className = "ph-range-badge " + config.class;
+            }
+            ticks.forEach(tick => {
+                if (tick.getAttribute("data-val") === String(val)) {
+                    tick.classList.add("active");
+                } else {
+                    tick.classList.remove("active");
+                }
+            });
+        }
+
+        if (slider) {
+            slider.addEventListener("input", function() {
+                updateSeverity(this.value);
+            });
+
+            ticks.forEach(tick => {
+                tick.addEventListener("click", function() {
+                    const val = this.getAttribute("data-val");
+                    slider.value = val;
+                    updateSeverity(val);
+                });
+            });
+        }
+
+        // Highlight selected radio card
+        const radioOptions = document.querySelectorAll('input[name="canRide"]');
+        radioOptions.forEach(radio => {
+            radio.addEventListener("change", function() {
+                document.querySelectorAll(".ph-radio-option").forEach(opt => opt.classList.remove("selected"));
+                if (this.checked && this.closest(".ph-radio-option")) {
+                    this.closest(".ph-radio-option").classList.add("selected");
+                }
+            });
+        });
+
+        // ====================================================
         // FORM SUBMISSION
         // ====================================================
 
@@ -260,11 +328,16 @@ if (section) {
                 const problem =
                     document.getElementById("problem").value;
 
+                const canRideRadio =
+                    document.querySelector('input[name="canRide"]:checked');
+
                 const canRide =
-                    document.getElementById("canRide").value;
+                    canRideRadio ? canRideRadio.value : "";
 
                 const seriousness =
-                    document.getElementById("seriousness").value;
+                    document.getElementById("seriousness") ?
+                    document.getElementById("seriousness").value :
+                    "";
 
                 const repairLocation =
                     document.getElementById("repairLocation").value;
@@ -273,16 +346,39 @@ if (section) {
                     document.getElementById("problemDescription").value;
 
 
-                if (
-                    problem === "" ||
-                    canRide === "" ||
-                    seriousness === "" ||
-                    repairLocation === "" ||
-                    problemDescription.trim() === ""
-                ) {
+                // =================================================
+                // JAVASCRIPT VALIDATION
+                // =================================================
 
-                    alert("Please fill in all the fields.");
+                if (!problem) {
+                    alert("Please select what problem you are having.");
+                    document.getElementById("problem").focus();
+                    return;
+                }
 
+                if (!canRide) {
+                    alert("Please select whether you can still ride the bike.");
+                    const firstRadio = document.querySelector('input[name="canRide"]');
+                    if (firstRadio) firstRadio.focus();
+                    return;
+                }
+
+                if (!seriousness) {
+                    alert("Please select how serious the problem is.");
+                    const slider = document.getElementById("seriousnessSlider");
+                    if (slider) slider.focus();
+                    return;
+                }
+
+                if (!repairLocation) {
+                    alert("Please select where the bike is located.");
+                    document.getElementById("repairLocation").focus();
+                    return;
+                }
+
+                if (!problemDescription.trim()) {
+                    alert("Please describe the problem you are experiencing.");
+                    document.getElementById("problemDescription").focus();
                     return;
                 }
 
