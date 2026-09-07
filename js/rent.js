@@ -34,7 +34,7 @@ if (section) {
 
                 <div class="ph-form-card">
 
-                    <form id="ph-form">
+                    <form id="ph-form" novalidate>
 
                         <div class="ph-field">
 
@@ -249,15 +249,31 @@ if (section) {
                     document.getElementById("purpose").value;
 
 
-                if (
-                    location === "" ||
-                    duration === "" ||
-                    bikeCount === "" ||
-                    purpose === ""
-                ) {
+                // =================================================
+                // JAVASCRIPT VALIDATION
+                // =================================================
 
-                    alert("Please fill in all the fields.");
+                if (!location) {
+                    alert("Please select your current location.");
+                    document.getElementById("location").focus();
+                    return;
+                }
 
+                if (!duration) {
+                    alert("Please select how long you need the bike.");
+                    document.getElementById("duration").focus();
+                    return;
+                }
+
+                if (!bikeCount) {
+                    alert("Please select how many bikes you need.");
+                    document.getElementById("bikeCount").focus();
+                    return;
+                }
+
+                if (!purpose) {
+                    alert("Please select what you are riding for.");
+                    document.getElementById("purpose").focus();
                     return;
                 }
 
