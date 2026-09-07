@@ -35,7 +35,7 @@ if (section) {
 
                 <div class="ph-form-card">
 
-                    <form id="ph-form">
+                    <form id="ph-form" novalidate>
 
 
                         <div class="ph-field">
@@ -64,7 +64,6 @@ if (section) {
                                 class="ph-input"
                                 type="number"
                                 id="rides"
-                                min="0"
                                 placeholder="e.g. 25"
                             >
 
@@ -81,7 +80,6 @@ if (section) {
                                 class="ph-input"
                                 type="number"
                                 id="distance"
-                                min="0"
                                 placeholder="e.g. 120"
                             >
 
@@ -288,18 +286,30 @@ if (section) {
 
 
                 // =================================================
-                // CHECK THE OTHER FIELDS
+                // CHECK THE OTHER FIELDS VIA JAVASCRIPT
                 // =================================================
 
-                if (
-                    rides === "" ||
-                    distance === "" ||
-                    earlyRide === "" ||
-                    bookedRepair === ""
-                ) {
+                if (rides === "" || isNaN(rides) || Number(rides) < 0) {
+                    alert("Please enter a valid number of rides (0 or more).");
+                    document.getElementById("rides").focus();
+                    return;
+                }
 
-                    alert("Please fill in all the fields.");
+                if (distance === "" || isNaN(distance) || Number(distance) < 0) {
+                    alert("Please enter a valid distance in km (0 or more).");
+                    document.getElementById("distance").focus();
+                    return;
+                }
 
+                if (!earlyRide) {
+                    alert("Please choose whether you completed a ride before 8 AM.");
+                    document.getElementById("earlyRide").focus();
+                    return;
+                }
+
+                if (!bookedRepair) {
+                    alert("Please choose whether you have booked a repair.");
+                    document.getElementById("bookedRepair").focus();
                     return;
                 }
 
