@@ -237,10 +237,10 @@
             <span class="nav-logo-text">PedalHub</span>
           </a>
           <p>Bike rental and repair, built for campus life. Unlock a ride, earn XP, keep your streak.</p>
-          <div class="footer-newsletter">
-            <input type="email" placeholder="Email address" aria-label="Email for newsletter">
-            <button type="button">Join</button>
-          </div>
+          <form class="footer-newsletter" novalidate onsubmit="handleNewsletterSubmit(event, this)">
+            <input type="text" placeholder="Email address" aria-label="Email for newsletter">
+            <button type="submit">Join</button>
+          </form>
         </div>
         <div class="footer-col">
           <h4>Ride</h4>
@@ -282,6 +282,27 @@
     const navLinks  = document.getElementById('navLinks');
     hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
     navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+    // Newsletter JS validation
+    function handleNewsletterSubmit(e, formEl) {
+      e.preventDefault();
+      const input = formEl.querySelector('input');
+      const email = input ? input.value.trim() : '';
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!email) {
+        alert('Please enter your email address.');
+        if (input) input.focus();
+        return false;
+      }
+      if (!emailRegex.test(email)) {
+        alert('Please enter a valid email address (e.g. name@campus.edu).');
+        if (input) input.focus();
+        return false;
+      }
+      alert('Thank you for subscribing to PedalHub updates!');
+      if (input) input.value = '';
+      return false;
+    }
   </script>
   <script src="js/achievement.js"></script>
 </body>
