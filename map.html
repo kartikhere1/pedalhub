@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Map — PedalHub</title>
+  <meta name="description" content="Find PedalHub bike docking stations across campus. 22 dock clusters cover every hostel, the library, and both academic wings.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* Map page extra styles */
+    .campus-map-wrap { position: relative; }
+
+    /* Buildings */
+    .b { position: absolute; background: white; border: 2px solid var(--cream-dark); border-radius: 6px;
+         display: flex; align-items: center; justify-content: center;
+         font-size: 0.65rem; font-weight: 700; color: var(--text-mid);
+         text-align: center; padding: 4px; line-height: 1.3; }
+
+    .b-lib    { width:120px; height:65px; top:22%; left:34%; background:#EEF6FF; border-color:#90CAF9; }
+    .b-ha     { width:75px;  height:75px; top:15%; left:8%;  background:#FFF8F0; border-color:#FFCC80; }
+    .b-hb     { width:75px;  height:75px; top:55%; left:8%;  background:#FFF8F0; border-color:#FFCC80; }
+    .b-hc     { width:75px;  height:75px; top:55%; left:82%; background:#FFF8F0; border-color:#FFCC80; }
+    .b-ac1    { width:130px; height:70px; top:15%; left:60%; background:#F5F0FF; border-color:#CE93D8; }
+    .b-ac2    { width:120px; height:65px; top:55%; left:45%; background:#F5F0FF; border-color:#CE93D8; }
+    .b-cafe   { width:90px;  height:55px; top:68%; left:26%; background:#F0FFF4; border-color:#A5D6A7; }
+    .b-sports { width:100px; height:55px; top:20%; left:82%; background:#FFF0F0; border-color:#FFAB91; }
+
+    /* Roads */
+    .road-h1 { position:absolute; top:50%; left:0; right:0; height:12px; background:rgba(255,255,255,0.5); border-radius:6px; transform:translateY(-50%); }
+    .road-v1 { position:absolute; left:50%; top:0; bottom:0; width:12px; background:rgba(255,255,255,0.5); border-radius:6px; transform:translateX(-50%); }
+    .road-v2 { position:absolute; left:22%; top:0; bottom:0; width:10px; background:rgba(255,255,255,0.4); border-radius:5px; transform:translateX(-50%); }
+    .road-v3 { position:absolute; left:78%; top:0; bottom:0; width:10px; background:rgba(255,255,255,0.4); border-radius:5px; transform:translateX(-50%); }
+    .road-h2 { position:absolute; top:30%; left:0; right:0; height:10px; background:rgba(255,255,255,0.35); border-radius:5px; }
+    .road-h3 { position:absolute; top:72%; left:0; right:0; height:10px; background:rgba(255,255,255,0.35); border-radius:5px; }
+
+    /* Dock pins */
+    .dp {
+      position: absolute; width: 26px; height: 26px;
+      background: var(--accent); border-radius: 50%;
+      border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; cursor: pointer; transition: all 0.25s ease;
+      animation: dp-pulse 2.5s ease-in-out infinite;
+      transform: translate(-50%, -50%);
+    }
+    .dp:hover { transform: translate(-50%,-50%) scale(1.35); z-index: 10; }
+    @keyframes dp-pulse {
+      0%,100% { box-shadow: 0 2px 8px rgba(82,183,136,0.3); }
+      50%      { box-shadow: 0 2px 20px rgba(82,183,136,0.7); }
+    }
+
+    /* Map grid bg */
+    .map-grid-bg {
+      background-image:
+        linear-gradient(rgba(82,183,136,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(82,183,136,0.06) 1px, transparent 1px);
+      background-size: 44px 44px;
+    }
+
+    /* Tooltip on hover */
+    .dp[data-label]:hover::after {
+      content: attr(data-label);
+      position: absolute; bottom: 130%; left: 50%; transform: translateX(-50%);
+      background: var(--primary); color: white; padding: 3px 8px;
+      border-radius: 4px; font-size: 10px; font-weight: 600;
+      white-space: nowrap; pointer-events: none;
+      font-family: var(--font-heading);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== Navigation ===== -->
+  <nav class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <div class="nav-logo-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/>
+              <path d="M15 6a1 1 0 0 0-1-1h-1l-2 5-3-3-2 4h10L15 6Z"/>
+            </svg>
+          </div>
+          <span class="nav-logo-text">PedalHub</span>
+        </a>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html#how-it-works">How it works</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="rewards.html">Rewards</a></li>
+          <li><a href="repairs.html">Repairs</a></li>
+          <li><a href="map.html" class="active">Map</a></li>
+          <li><a href="pricing.html" class="nav-cta">Unlock a bike</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== Page Hero ===== -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-eyebrow" style="color:var(--accent);position:relative">Docks near you</span>
+      <h1>A dock within a<br>two-minute walk.</h1>
+      <p>Twenty-two docking clusters cover every hostel block, the library, and both academic wings — so you're never far from your next ride.</p>
+    </div>
+  </section>
+
+  <!-- ===== Map Section ===== -->
+  <section class="section map-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Campus coverage</span>
+        <h2>Where to find us</h2>
+        <p class="section-subtitle">Every green dot is an active docking cluster. Hover to see the location name.</p>
+      </div>
+
+      <!-- Legend -->
+      <div class="map-legend">
+        <div class="legend-item">
+          <div class="legend-dot green"></div>
+          Active dock cluster
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot grey"></div>
+          Coming soon
+        </div>
+        <div class="legend-item" style="margin-left:auto; font-size:0.8rem; color:var(--text-light);">
+          🚲 22 clusters · ~180 bikes
+        </div>
+      </div>
+
+      <!-- Campus Map -->
+      <div class="campus-map-wrap">
+        <div class="map-grid-bg" style="position:absolute;inset:0;"></div>
+
+        <!-- Roads -->
+        <div class="road-h1"></div>
+        <div class="road-v1"></div>
+        <div class="road-v2"></div>
+        <div class="road-v3"></div>
+        <div class="road-h2"></div>
+        <div class="road-h3"></div>
+
+        <!-- Buildings -->
+        <div class="b b-lib">📚 Library</div>
+        <div class="b b-ha">🏠 Hostel A</div>
+        <div class="b b-hb">🏠 Hostel B</div>
+        <div class="b b-hc">🏠 Hostel C</div>
+        <div class="b b-ac1">🏛️ Academic Block 1</div>
+        <div class="b b-ac2">🏛️ Academic Block 2</div>
+        <div class="b b-cafe">🍽️ Cafeteria</div>
+        <div class="b b-sports">⚽ Sports Complex</div>
+
+        <!-- Dock Pins — (left%, top%) -->
+        <div class="dp" style="left:8%;  top:10%;"  data-label="Hostel A North">🚲</div>
+        <div class="dp" style="left:8%;  top:38%;"  data-label="Hostel A South">🚲</div>
+        <div class="dp" style="left:8%;  top:60%;"  data-label="Hostel B North">🚲</div>
+        <div class="dp" style="left:8%;  top:88%;"  data-label="Hostel B South">🚲</div>
+        <div class="dp" style="left:22%; top:10%;"  data-label="Main Gate">🚲</div>
+        <div class="dp" style="left:22%; top:50%;"  data-label="Central Road">🚲</div>
+        <div class="dp" style="left:22%; top:75%;"  data-label="Cafeteria Dock">🚲</div>
+        <div class="dp" style="left:34%; top:22%;"  data-label="Library West">🚲</div>
+        <div class="dp" style="left:50%; top:22%;"  data-label="Library East">🚲</div>
+        <div class="dp" style="left:50%; top:10%;"  data-label="Academic 1 Entry">🚲</div>
+        <div class="dp" style="left:50%; top:50%;"  data-label="Campus Centre">🚲</div>
+        <div class="dp" style="left:50%; top:72%;"  data-label="Academic 2 South">🚲</div>
+        <div class="dp" style="left:50%; top:88%;"  data-label="South Gate">🚲</div>
+        <div class="dp" style="left:66%; top:22%;"  data-label="Academic 1 East">🚲</div>
+        <div class="dp" style="left:66%; top:50%;"  data-label="Academic 2 North">🚲</div>
+        <div class="dp" style="left:66%; top:88%;"  data-label="East Road">🚲</div>
+        <div class="dp" style="left:78%; top:10%;"  data-label="Sports Complex">🚲</div>
+        <div class="dp" style="left:78%; top:38%;"  data-label="Sports East">🚲</div>
+        <div class="dp" style="left:78%; top:60%;"  data-label="Hostel C West">🚲</div>
+        <div class="dp" style="left:82%; top:88%;"  data-label="Hostel C South">🚲</div>
+        <div class="dp" style="left:94%; top:50%;"  data-label="East Gate">🚲</div>
+        <div class="dp" style="left:34%; top:88%;"  data-label="Cafeteria South">🚲</div>
+      </div>
+
+      <!-- Dock Cluster Cards -->
+      <div class="section-header" style="margin-top:3rem;">
+        <span class="section-eyebrow">All locations</span>
+        <h2>Every dock cluster</h2>
+        <p class="section-subtitle">Bikes available at each location, updated in real-time.</p>
+      </div>
+
+      <div class="clusters-grid">
+        <div class="cluster-card"><div class="cluster-icon">🏠</div><div><div class="cluster-name">Hostel A</div><div class="cluster-avail"><strong>6</strong> bikes available</div></div></div>
+        <div class="cluster-card"><div class="cluster-icon">🏠</div><div><div class="cluster-name">Hostel B</div><div class="cluster-avail"><strong>4</strong> bikes available</div></div></div>
+        <div class="cluster-card"><div class="cluster-icon">🏠</div><div><div class="cluster-name">Hostel C</div><div class="cluster-avail"><strong>7</strong> bikes available</div></div></div>
+        <div class="cluster-card"><div class="cluster-icon">📚</div><div><div class="cluster-name">Library</div><div class="cluster-avail"><strong>8</strong> bikes available</div></div></div>
+        <div class="cluster-card"><div class="cluster-icon">🏛️</div><div><div class="cluster-name">Academic Block 1</div><div class="cluster-avail"><strong>5</strong> bikes available</div></div></div>
+        <div class="cluster-card"><div class="cluster-icon">🏛️</div><div><div class="cluster-name">Academic Block 2</div><div class="cluster-avail"><strong>3</strong> bikes available</div></div></div>
+        <div class="cluster-card"><div class="cluster-icon">🍽️</div><div><div class="cluster-name">Cafeteria</div><div class="cluster-avail"><strong>9</strong> bikes available</div></div></div>
+        <div class="cluster-card"><div class="cluster-icon">⚽</div><div><div class="cluster-name">Sports Complex</div><div class="cluster-avail"><strong>5</strong> bikes available</div></div></div>
+        <div class="cluster-card"><div class="cluster-icon">🚪</div><div><div class="cluster-name">Main Gate</div><div class="cluster-avail"><strong>10</strong> bikes available</div></div></div>
+        <div class="cluster-card"><div class="cluster-icon">🚪</div><div><div class="cluster-name">East Gate</div><div class="cluster-avail"><strong>6</strong> bikes available</div></div></div>
+        <div class="cluster-card"><div class="cluster-icon">🚪</div><div><div class="cluster-name">South Gate</div><div class="cluster-avail"><strong>4</strong> bikes available</div></div></div>
+        <div class="cluster-card"><div class="cluster-icon">⭕</div><div><div class="cluster-name">Campus Centre</div><div class="cluster-avail"><strong>11</strong> bikes available</div></div></div>
+      </div>
+
+      <!-- CTA -->
+      <div style="text-align:center; margin-top:3.5rem; padding:3rem; background:var(--white); border-radius:var(--radius-xl); border:1px solid var(--cream-dark);">
+        <h2 style="margin-bottom:0.75rem;">Ready to ride?</h2>
+        <p style="max-width:440px; margin:0 auto 1.75rem;">Walk to the nearest dock, scan the QR, and you're off. No app download required for your first ride.</p>
+        <a href="pricing.html" class="btn btn-primary btn-lg" id="findDockBtn">View plans & ride →</a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ===== Form Section (built by js/dock.js) ===== -->
+  <div id="ph-form-section" class="ph-form-section" data-form="dock"></div>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/>
+                <path d="M15 6a1 1 0 0 0-1-1h-1l-2 5-3-3-2 4h10L15 6Z"/>
+              </svg>
+            </div>
+            <span class="nav-logo-text">PedalHub</span>
+          </a>
+          <p>Bike rental and repair, built for campus life. Unlock a ride, earn XP, keep your streak.</p>
+          <div class="footer-newsletter">
+            <input type="email" placeholder="Email address" aria-label="Email for newsletter">
+            <button type="button">Join</button>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Ride</h4>
+          <ul>
+            <li><a href="index.html#how-it-works">How it works</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="map.html">Find a dock</a></li>
+            <li><a href="rewards.html">Rewards</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Fix</h4>
+          <ul>
+            <li><a href="repairs.html">Book a repair</a></li>
+            <li><a href="repairs.html#services">Service menu</a></li>
+            <li><a href="repairs.html#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="map.html">Campus map</a></li>
+            <li><a href="rewards.html">Rider rewards</a></li>
+            <li><a href="repairs.html">Safety</a></li>
+            <li><a href="repairs.html#faq">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 PedalHub. Made for campus, by campus.</span>
+        <span>No hidden fees, ever.</span>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks  = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+  </script>
+  <script src="js/dock.js"></script>
+</body>
+</html>
