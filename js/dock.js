@@ -35,7 +35,7 @@ if (section) {
 
                 <div class="ph-form-card">
 
-                    <form id="ph-form">
+                    <form id="ph-form" novalidate>
 
 
                         <div class="ph-field">
@@ -236,14 +236,31 @@ if (section) {
                     document.getElementById("bikePreference").value;
 
 
-                if (
-                    startLocation === "" ||
-                    destination === "" ||
-                    bikePreference === ""
-                ) {
+                // =================================================
+                // JAVASCRIPT VALIDATION
+                // =================================================
 
-                    alert("Please fill in all the fields.");
+                if (!startLocation) {
+                    alert("Please select where you are starting.");
+                    document.getElementById("startLocation").focus();
+                    return;
+                }
 
+                if (!destination) {
+                    alert("Please select where you are going.");
+                    document.getElementById("destination").focus();
+                    return;
+                }
+
+                if (startLocation === destination) {
+                    alert("Starting location and destination cannot be the same. Please choose different locations.");
+                    document.getElementById("destination").focus();
+                    return;
+                }
+
+                if (!bikePreference) {
+                    alert("Please select your bike preference.");
+                    document.getElementById("bikePreference").focus();
                     return;
                 }
 
