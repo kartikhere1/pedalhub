@@ -35,7 +35,7 @@ if (section) {
 
                 <div class="ph-form-card">
 
-                    <form id="ph-form">
+                    <form id="ph-form" novalidate>
 
                         <div class="ph-field">
 
@@ -76,7 +76,6 @@ if (section) {
                                 class="ph-input"
                                 type="number"
                                 id="hours"
-                                min="1"
                                 placeholder="e.g. 3"
                             >
 
@@ -208,15 +207,31 @@ if (section) {
                     document.getElementById("wholeDay").value;
 
 
-                if (
-                    plan === "" ||
-                    hours === "" ||
-                    numberOfBikes === "" ||
-                    wholeDay === ""
-                ) {
+                // =================================================
+                // JAVASCRIPT VALIDATION
+                // =================================================
 
-                    alert("Please fill in all the fields.");
+                if (!plan) {
+                    alert("Please choose a plan.");
+                    document.getElementById("plan").focus();
+                    return;
+                }
 
+                if (!hours || isNaN(hours) || Number(hours) < 1) {
+                    alert("Please enter a valid number of hours (at least 1 hour).");
+                    document.getElementById("hours").focus();
+                    return;
+                }
+
+                if (!numberOfBikes) {
+                    alert("Please select how many bikes you need.");
+                    document.getElementById("numberOfBikes").focus();
+                    return;
+                }
+
+                if (!wholeDay) {
+                    alert("Please select whether you need the bike for the whole day.");
+                    document.getElementById("wholeDay").focus();
                     return;
                 }
 
