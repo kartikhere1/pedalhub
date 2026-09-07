@@ -76,7 +76,7 @@ if (section) {
 
                 <div class="ph-form-card">
 
-                    <form id="ph-form">
+                    <form id="ph-form" novalidate>
 
                         <div class="ph-field">
 
@@ -277,7 +277,7 @@ if (section) {
 
                 <div class="ph-form-card">
 
-                    <form id="ph-form">
+                    <form id="ph-form" novalidate>
 
                         <div class="ph-field">
 
@@ -318,7 +318,6 @@ if (section) {
                                 class="ph-input"
                                 type="number"
                                 id="hours"
-                                min="1"
                                 placeholder="e.g. 3"
                             >
 
@@ -436,7 +435,7 @@ if (section) {
 
                 <div class="ph-form-card">
 
-                    <form id="ph-form">
+                    <form id="ph-form" novalidate>
 
 
                         <div class="ph-field">
@@ -489,56 +488,66 @@ if (section) {
                                 Can you still ride the bike?
                             </label>
 
-                            <select
-                                class="ph-select"
-                                id="canRide"
-                            >
+                            <div class="ph-radio-group" role="radiogroup" aria-label="Can you still ride the bike?">
 
-                                <option value="">
-                                    Choose...
-                                </option>
+                                <label class="ph-radio-option">
+                                    <input
+                                        type="radio"
+                                        name="canRide"
+                                        value="yes"
+                                        class="ph-radio-input"
+                                    >
+                                    <span class="ph-radio-text">Yes</span>
+                                </label>
 
-                                <option value="yes">
-                                    Yes
-                                </option>
+                                <label class="ph-radio-option">
+                                    <input
+                                        type="radio"
+                                        name="canRide"
+                                        value="no"
+                                        class="ph-radio-input"
+                                    >
+                                    <span class="ph-radio-text">No</span>
+                                </label>
 
-                                <option value="no">
-                                    No
-                                </option>
-
-                            </select>
+                            </div>
 
                         </div>
 
 
                         <div class="ph-field">
 
-                            <label class="ph-label">
-                                How serious is the problem?
-                            </label>
+                            <div class="ph-range-header">
+                                <label class="ph-label" for="seriousnessSlider">
+                                    How serious is the problem?
+                                </label>
+                                <span class="ph-range-badge severity-moderate" id="seriousnessBadge">
+                                    Moderate
+                                </span>
+                            </div>
 
-                            <select
-                                class="ph-select"
-                                id="seriousness"
+                            <input
+                                type="range"
+                                min="1"
+                                max="3"
+                                step="1"
+                                value="2"
+                                id="seriousnessSlider"
+                                class="ph-range-slider"
+                                aria-label="How serious is the problem"
                             >
 
-                                <option value="">
-                                    Choose...
-                                </option>
+                            <input
+                                type="hidden"
+                                id="seriousness"
+                                value="moderate"
+                            >
 
-                                <option value="small">
-                                    Small
-                                </option>
-
-                                <option value="moderate">
-                                    Moderate
-                                </option>
-
-                                <option value="serious">
-                                    Serious
-                                </option>
-
-                            </select>
+                            <div class="ph-range-labels">
+                                <span class="ph-range-tick" data-val="1">🟢 Small</span>
+                                <span class="ph-range-tick active" data-val="2">🟡 Moderate</span>
+                                <span class="ph-range-tick" data-val="3">🔴 Serious</span>
+                            </div>
 
                         </div>
 
@@ -657,7 +666,7 @@ if (section) {
 
                 <div class="ph-form-card">
 
-                    <form id="ph-form">
+                    <form id="ph-form" novalidate>
 
 
                         <div class="ph-field">
@@ -686,7 +695,6 @@ if (section) {
                                 class="ph-input"
                                 type="number"
                                 id="rides"
-                                min="0"
                                 placeholder="e.g. 25"
                             >
 
@@ -703,7 +711,6 @@ if (section) {
                                 class="ph-input"
                                 type="number"
                                 id="distance"
-                                min="0"
                                 placeholder="e.g. 120"
                             >
 
@@ -813,7 +820,7 @@ if (section) {
 
                 <div class="ph-form-card">
 
-                    <form id="ph-form">
+                    <form id="ph-form" novalidate>
 
 
                         <div class="ph-field">
@@ -1040,6 +1047,60 @@ if (section) {
 
     if (form) {
 
+        // Setup Range Slider for Repair Form (if present)
+        const slider = document.getElementById("seriousnessSlider");
+        const seriousnessHidden = document.getElementById("seriousness");
+        const badge = document.getElementById("seriousnessBadge");
+        const ticks = document.querySelectorAll(".ph-range-tick");
+
+        const severityMap = {
+            "1": { value: "small", label: "Small", class: "severity-small" },
+            "2": { value: "moderate", label: "Moderate", class: "severity-moderate" },
+            "3": { value: "serious", label: "Serious", class: "severity-serious" }
+        };
+
+        function updateSeverity(val) {
+            const config = severityMap[val] || severityMap["2"];
+            if (seriousnessHidden) {
+                seriousnessHidden.value = config.value;
+            }
+            if (badge) {
+                badge.textContent = config.label;
+                badge.className = "ph-range-badge " + config.class;
+            }
+            ticks.forEach(tick => {
+                if (tick.getAttribute("data-val") === String(val)) {
+                    tick.classList.add("active");
+                } else {
+                    tick.classList.remove("active");
+                }
+            });
+        }
+
+        if (slider) {
+            slider.addEventListener("input", function() {
+                updateSeverity(this.value);
+            });
+
+            ticks.forEach(tick => {
+                tick.addEventListener("click", function() {
+                    const val = this.getAttribute("data-val");
+                    slider.value = val;
+                    updateSeverity(val);
+                });
+            });
+        }
+
+        // Setup Radio Button highlighting for Question 2
+        const radioOptions = document.querySelectorAll('input[name="canRide"]');
+        radioOptions.forEach(radio => {
+            radio.addEventListener("change", function() {
+                document.querySelectorAll(".ph-radio-option").forEach(opt => opt.classList.remove("selected"));
+                if (this.checked && this.closest(".ph-radio-option")) {
+                    this.closest(".ph-radio-option").classList.add("selected");
+                }
+            });
+        });
 
         // ====================================================
         // FORM SUBMISSION
@@ -1071,15 +1132,31 @@ if (section) {
                     document.getElementById("purpose").value;
 
 
-                if (
-                    location === "" ||
-                    duration === "" ||
-                    bikeCount === "" ||
-                    purpose === ""
-                ) {
+                // =================================================
+                // JAVASCRIPT VALIDATION
+                // =================================================
 
-                    alert("Please fill in all the fields.");
+                if (!location) {
+                    alert("Please select your current location.");
+                    document.getElementById("location").focus();
+                    return;
+                }
 
+                if (!duration) {
+                    alert("Please select how long you need the bike.");
+                    document.getElementById("duration").focus();
+                    return;
+                }
+
+                if (!bikeCount) {
+                    alert("Please select how many bikes you need.");
+                    document.getElementById("bikeCount").focus();
+                    return;
+                }
+
+                if (!purpose) {
+                    alert("Please select what you are riding for.");
+                    document.getElementById("purpose").focus();
                     return;
                 }
 
@@ -1209,15 +1286,31 @@ if (section) {
                     document.getElementById("wholeDay").value;
 
 
-                if (
-                    plan === "" ||
-                    hours === "" ||
-                    numberOfBikes === "" ||
-                    wholeDay === ""
-                ) {
+                // =================================================
+                // JAVASCRIPT VALIDATION
+                // =================================================
 
-                    alert("Please fill in all the fields.");
+                if (!plan) {
+                    alert("Please choose a plan.");
+                    document.getElementById("plan").focus();
+                    return;
+                }
 
+                if (!hours || isNaN(hours) || Number(hours) < 1) {
+                    alert("Please enter a valid number of hours (at least 1 hour).");
+                    document.getElementById("hours").focus();
+                    return;
+                }
+
+                if (!numberOfBikes) {
+                    alert("Please select how many bikes you need.");
+                    document.getElementById("numberOfBikes").focus();
+                    return;
+                }
+
+                if (!wholeDay) {
+                    alert("Please select whether you need the bike for the whole day.");
+                    document.getElementById("wholeDay").focus();
                     return;
                 }
 
@@ -1341,11 +1434,16 @@ if (section) {
                 const problem =
                     document.getElementById("problem").value;
 
+                const canRideRadio =
+                    document.querySelector('input[name="canRide"]:checked');
+
                 const canRide =
-                    document.getElementById("canRide").value;
+                    canRideRadio ? canRideRadio.value : "";
 
                 const seriousness =
-                    document.getElementById("seriousness").value;
+                    document.getElementById("seriousness") ?
+                    document.getElementById("seriousness").value :
+                    "";
 
                 const repairLocation =
                     document.getElementById("repairLocation").value;
@@ -1354,16 +1452,39 @@ if (section) {
                     document.getElementById("problemDescription").value;
 
 
-                if (
-                    problem === "" ||
-                    canRide === "" ||
-                    seriousness === "" ||
-                    repairLocation === "" ||
-                    problemDescription.trim() === ""
-                ) {
+                // =================================================
+                // JAVASCRIPT VALIDATION
+                // =================================================
 
-                    alert("Please fill in all the fields.");
+                if (!problem) {
+                    alert("Please select what problem you are having.");
+                    document.getElementById("problem").focus();
+                    return;
+                }
 
+                if (!canRide) {
+                    alert("Please select whether you can still ride the bike.");
+                    const firstRadio = document.querySelector('input[name="canRide"]');
+                    if (firstRadio) firstRadio.focus();
+                    return;
+                }
+
+                if (!seriousness) {
+                    alert("Please select how serious the problem is.");
+                    const slider = document.getElementById("seriousnessSlider");
+                    if (slider) slider.focus();
+                    return;
+                }
+
+                if (!repairLocation) {
+                    alert("Please select where the bike is located.");
+                    document.getElementById("repairLocation").focus();
+                    return;
+                }
+
+                if (!problemDescription.trim()) {
+                    alert("Please describe the problem you are experiencing.");
+                    document.getElementById("problemDescription").focus();
                     return;
                 }
 
@@ -1551,18 +1672,30 @@ if (section) {
 
 
                 // =================================================
-                // CHECK THE OTHER FIELDS
+                // CHECK THE OTHER FIELDS VIA JAVASCRIPT
                 // =================================================
 
-                if (
-                    rides === "" ||
-                    distance === "" ||
-                    earlyRide === "" ||
-                    bookedRepair === ""
-                ) {
+                if (rides === "" || isNaN(rides) || Number(rides) < 0) {
+                    alert("Please enter a valid number of rides (0 or more).");
+                    document.getElementById("rides").focus();
+                    return;
+                }
 
-                    alert("Please fill in all the fields.");
+                if (distance === "" || isNaN(distance) || Number(distance) < 0) {
+                    alert("Please enter a valid distance in km (0 or more).");
+                    document.getElementById("distance").focus();
+                    return;
+                }
 
+                if (!earlyRide) {
+                    alert("Please choose whether you completed a ride before 8 AM.");
+                    document.getElementById("earlyRide").focus();
+                    return;
+                }
+
+                if (!bookedRepair) {
+                    alert("Please choose whether you have booked a repair.");
+                    document.getElementById("bookedRepair").focus();
                     return;
                 }
 
@@ -2147,14 +2280,31 @@ if (section) {
                     document.getElementById("bikePreference").value;
 
 
-                if (
-                    startLocation === "" ||
-                    destination === "" ||
-                    bikePreference === ""
-                ) {
+                // =================================================
+                // JAVASCRIPT VALIDATION
+                // =================================================
 
-                    alert("Please fill in all the fields.");
+                if (!startLocation) {
+                    alert("Please select where you are starting.");
+                    document.getElementById("startLocation").focus();
+                    return;
+                }
 
+                if (!destination) {
+                    alert("Please select where you are going.");
+                    document.getElementById("destination").focus();
+                    return;
+                }
+
+                if (startLocation === destination) {
+                    alert("Starting location and destination cannot be the same. Please choose different locations.");
+                    document.getElementById("destination").focus();
+                    return;
+                }
+
+                if (!bikePreference) {
+                    alert("Please select your bike preference.");
+                    document.getElementById("bikePreference").focus();
                     return;
                 }
 
